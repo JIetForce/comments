@@ -9,6 +9,8 @@ This application is a simple React + Redux application that interacts with a com
 - Add new comments
 - Delete existing comments
 - Error handling for fetching and deleting comments
+- Continuous integration (CI) setup using GitHub Actions
+- Automatic deployment via Netlify
 
 ## Technologies Used
 
@@ -16,7 +18,19 @@ This application is a simple React + Redux application that interacts with a com
 - **Redux Toolkit**: A library for efficient Redux development
 - **React Testing Library**: A library for testing React components
 - **TypeScript**: A typed superset of JavaScript for better tooling and reliability
-- **Axios**: A promise-based HTTP client for making API calls
+- **GitHub Actions**: Automates the build and testing process using a CI/CD pipeline
+- **Netlify**: Hosts and deploys the live application
+
+## CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and deployment. Each time you push to the `main` branch or submit a pull request to `main`, the following steps are automatically triggered:
+
+1. Install dependencies
+2. Build the application
+3. Run tests
+4. Upload build artifacts
+
+You can view the live application here: [Live App](https://lively-bunny-83771e.netlify.app/).
 
 ## Getting Started
 
@@ -26,13 +40,12 @@ Follow these instructions to set up your development environment:
 
 Make sure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (v12 or higher)
-- [npm](https://www.npmjs.com/get-npm) (comes with Node.js)
+- **Node.js** (v12 or higher)
+- **npm** (comes with Node.js)
 
 ### Installation
 
 1. Clone the repository: `git clone https://github.com/JIetForce/comments.git`
-   `cd comments`
 2. Install the dependencies: `npm install`
 
 ### Running the Application
