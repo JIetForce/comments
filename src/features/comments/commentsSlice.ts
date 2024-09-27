@@ -1,6 +1,9 @@
-import { CommentsState, NewCommentType } from "./../../types/commentTypes";
+import {
+  CommentsState,
+  CommentType,
+  NewCommentType,
+} from "./../../types/commentTypes";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
 import {
   addCommentAPI,
   deleteCommentAPI,
@@ -9,6 +12,9 @@ import {
 
 const initialState: CommentsState = {
   comments: [],
+  removedCommentIds: JSON.parse(
+    localStorage.getItem("removedCommentIds") || "[]"
+  ),
   fetchStatus: "idle",
   addStatus: "idle",
   deleteStatus: "idle",
@@ -18,7 +24,10 @@ export const fetchComments = createAsyncThunk(
   "comments/fetchComments",
   async () => {
     const response = await fetchCommentsAPI();
-    return response;
+    return response.filter(
+      (comment: CommentType) =>
+        !initialState.removedCommentIds.includes(comment.id)
+    );
   }
 );
 
@@ -41,6 +50,14 @@ export const deleteComment = createAsyncThunk(
   async (id: number, { rejectWithValue }) => {
     try {
       const response = await deleteCommentAPI(id);
+      const removedCommentIds = JSON.parse(
+        localStorage.getItem("removedCommentIds") || "[]"
+      );
+      removedCommentIds.push(id);
+      localStorage.setItem(
+        "removedCommentIds",
+        JSON.stringify(removedCommentIds)
+      );
       return response;
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -63,7 +80,7 @@ const commentsSlice = createSlice({
       state.fetchStatus = "succeeded";
       state.comments = action.payload;
     });
-    builder.addCase(fetchComments.rejected, (state, action) => {
+    builder.addCase(fetchComments.rejected, (state) => {
       state.fetchStatus = "failed";
     });
 
@@ -75,7 +92,7 @@ const commentsSlice = createSlice({
       state.addStatus = "succeeded";
       state.comments = [action.payload, ...state.comments];
     });
-    builder.addCase(addComment.rejected, (state, action) => {
+    builder.addCase(addComment.rejected, (state) => {
       state.addStatus = "failed";
     });
 
@@ -89,7 +106,7 @@ const commentsSlice = createSlice({
         (comment) => comment.id !== action.meta.arg
       );
     });
-    builder.addCase(deleteComment.rejected, (state, action) => {
+    builder.addCase(deleteComment.rejected, (state) => {
       state.deleteStatus = "failed";
     });
   },
