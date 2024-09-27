@@ -23,7 +23,9 @@ const CommentList: React.FC = () => {
   return (
     <div className="p-4 w-full max-w-xl mx-auto bg-white rounded-lg shadow-md">
       <Label.Root className="block text-lg font-medium text-gray-700 mb-4">
-        Comments
+        {`Comments ${
+          fetchStatus === "succeeded" ? `(${comments?.length})` : ""
+        }`}
       </Label.Root>
       {fetchStatus === "loading" && <p>Loading comments...</p>}
       {fetchStatus === "failed" && (
