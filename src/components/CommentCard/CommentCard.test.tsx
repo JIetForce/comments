@@ -39,6 +39,7 @@ describe("Comment", () => {
     store = createMockStore({
       comments: {
         comments: initialComments,
+        removedCommentIds: [],
         fetchStatus: "succeeded",
         deleteStatus: "idle",
         addStatus: "idle",

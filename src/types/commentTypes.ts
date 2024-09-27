@@ -20,6 +20,7 @@ export type NewCommentType = {
 
 export type CommentsState = {
   comments: CommentType[];
+  removedCommentIds: number[];
   fetchStatus: "idle" | "loading" | "succeeded" | "failed";
   addStatus: "idle" | "loading" | "succeeded" | "failed";
   deleteStatus: "idle" | "loading" | "succeeded" | "failed";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Label from "@radix-ui/react-label";
 import * as Avatar from "@radix-ui/react-avatar";
@@ -27,12 +27,29 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
     const resultAction = await dispatch(deleteComment(comment.id));
     if (deleteComment.fulfilled.match(resultAction)) {
       toast.success("Comment deleted successfully.");
+      localStorage.removeItem("modalCommentId");
     } else {
       toast.error(`Failed to delete comment: ${resultAction.error.message}`);
     }
 
     setOpen(false);
   };
+
+  const handleOpenChange = (openState: boolean) => {
+    setOpen(openState);
+    if (openState) {
+      localStorage.setItem("modalCommentId", comment.id.toString());
+    } else {
+      localStorage.removeItem("modalCommentId");
+    }
+  };
+
+  useEffect(() => {
+    const savedCommentId = localStorage.getItem("modalCommentId");
+    if (savedCommentId && Number(savedCommentId) === comment.id) {
+      setOpen(true);
+    }
+  }, [comment.id]);
 
   return (
     <li className="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-start">
@@ -54,7 +71,7 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
         </div>
       </div>
 
-      <Dialog.Root open={open} onOpenChange={setOpen}>
+      <Dialog.Root open={open} onOpenChange={handleOpenChange}>
         <Dialog.Trigger
           asChild
           className="ml-4 bg-red-500 text-white text-sm px-3 py-1 rounded-lg hover:bg-red-600 transition"
