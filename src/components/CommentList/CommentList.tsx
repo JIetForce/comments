@@ -5,6 +5,7 @@ import * as Label from "@radix-ui/react-label";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
 import { fetchComments } from "../../features/comments/commentsSlice";
+import useScrollRestoration from "../../hooks/useScrollRestoration";
 
 const CommentList: React.FC = () => {
   const comments = useSelector((state: RootState) => state.comments.comments);
@@ -13,6 +14,8 @@ const CommentList: React.FC = () => {
   const fetchStatus = useSelector(
     (state: RootState) => state.comments.fetchStatus
   );
+
+  useScrollRestoration(!!comments?.length);
 
   useEffect(() => {
     if (fetchStatus === "idle") {
