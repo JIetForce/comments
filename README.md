@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+# React + Redux Comments Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application is a simple React + Redux application that interacts with a comments API, allowing users to add, delete, and view comments.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Fetch comments from an external API
+- Display a list of comments
+- Add new comments
+- Delete existing comments
+- Error handling for fetching and deleting comments
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React**: A JavaScript library for building user interfaces
+- **Redux Toolkit**: A library for efficient Redux development
+- **React Testing Library**: A library for testing React components
+- **TypeScript**: A typed superset of JavaScript for better tooling and reliability
+- **Axios**: A promise-based HTTP client for making API calls
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+Follow these instructions to set up your development environment:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+Make sure you have the following installed:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Node.js](https://nodejs.org/) (v12 or higher)
+- [npm](https://www.npmjs.com/get-npm) (comes with Node.js)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository: `git clone https://github.com/JIetForce/comments.git`
+   `cd comments`
+2. Install the dependencies: `npm install`
 
-### `npm run eject`
+### Running the Application
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To start the development server, run: `npm start`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open your browser and navigate to `http://localhost:3000` to view the application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Running Tests
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+To run tests and generate a coverage report, execute the following command: `npm test -- --coverage`
