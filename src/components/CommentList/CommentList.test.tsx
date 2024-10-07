@@ -58,9 +58,9 @@ describe("CommentList", () => {
 
     expect(screen.getByText(/loading comments/i)).toBeInTheDocument();
 
-    await waitFor(() =>
-      expect(screen.queryByText(/loading comments/i)).not.toBeInTheDocument()
-    );
+    await waitFor(() => {
+      expect(screen.queryByText(/loading comments/i)).not.toBeInTheDocument();
+    });
 
     expect(screen.getByText("First comment")).toBeInTheDocument();
     expect(screen.getByText("Second comment")).toBeInTheDocument();

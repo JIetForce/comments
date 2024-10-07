@@ -64,7 +64,9 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
           <Label.Root className="block text-sm font-medium text-gray-700">
             {comment.user.username}
           </Label.Root>
-          <p className="mt-2 text-gray-600">{comment.body}</p>
+          <p className="mt-2 text-gray-600 break-words whitespace-pre-wrap">
+            {comment.body}
+          </p>
           <p className="mt-2 text-sm text-gray-500">
             Likes: {comment.likes || 0}
           </p>
